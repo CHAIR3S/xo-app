@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { calendar, search, grid, menu } from 'ionicons/icons';
+import { chevronDown, calendar, search, grid, menu } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ import { calendar, search, grid, menu } from 'ionicons/icons';
   imports: [
     IonicModule,
     CommonModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class HomePage implements OnInit {
@@ -20,9 +20,22 @@ export class HomePage implements OnInit {
   searchIcon = search;
   gridIcon = grid;
   menuIcon = menu;
+  chevronDownIcon = chevronDown;
 
-  constructor() { }
+  showFilters = false;
+  showStickyFilters = false;
 
-  ngOnInit() {
+  constructor() {}
+
+  ngOnInit() {}
+
+  onScroll(event: any) {
+    const yOffset = event.detail.scrollTop;
+    this.showStickyFilters = yOffset > 100; // Mostrar filtros si se hace scroll hacia abajo más de 100px
+    console.log(yOffset); // Debug para verificar el scroll
+  }
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
   }
 }

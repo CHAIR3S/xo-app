@@ -1,23 +1,67 @@
-<ion-content class="bg-black text-white h-screen">
-  <!-- Header -->
-  <div class="flex justify-between items-center px-4 pt-12">
-    <div>
-      <div class="text-sm text-gray-400">MONDAY, DEC 21</div>
-      <h1 class="text-2xl font-bold">Events</h1>
+<ion-content
+  class="bg-black text-white h-screen"
+  (ionScroll)="onScroll($event)" 
+  scroll-events="true"
+>
+  <!-- Sticky Header -->
+  <div class="sticky top-0 z-50 bg-black"
+  >
+    <!-- Header -->
+    <div class="flex justify-between items-center px-4 pt-12"
+    >
+      <div>
+        <div class="text-sm text-gray-400">MONDAY, DEC 21</div>
+        <h1 class="text-2xl font-bold">Events</h1>
+      </div>
+      <ion-avatar>
+        <img src="/assets/placeholder.svg" alt="Profile" />
+      </ion-avatar>
     </div>
-    <ion-avatar>
-      <img src="/assets/placeholder.svg" alt="Profile" />
-    </ion-avatar>
+
+    <!-- Search Bar -->
+    <div class="flex items-center px-4 py-2 space-x-2">
+      <input
+        type="text"
+        placeholder="Search events..."
+        class="flex-grow bg-gray-800 text-white placeholder-gray-400 rounded-xl p-3 focus:outline-none"
+      />
+
+
+    <!-- Sticky Filters (appear on scroll) -->
+    <div
+      *ngIf="showStickyFilters"
+    >
+      <button class="bg-gray-800 p-2 rounded-xl flex items-center space-x-2">
+        <span class="text-white text-sm">Location</span>
+        <ion-icon [icon]="chevronDownIcon" class="text-white"></ion-icon>
+      </button>
+      <!-- <button class="bg-gray-800 p-2 rounded-xl flex items-center space-x-2">
+        <span class="text-white text-sm">Date</span>
+        <ion-icon [icon]="chevronDownIcon" class="text-white"></ion-icon>
+      </button> -->
+    </div>
+
+
+
+
+      <button (click)="toggleFilters()" class="bg-gray-800 p-3 rounded-xl">
+        <ion-icon [icon]="chevronDownIcon" class="text-white"></ion-icon>
+      </button>
+
+
+
+    </div>
+
+    <!-- Filters -->
+    <div *ngIf="showFilters" class="px-4 py-2">
+      <div class="bg-gray-800 rounded-xl p-4">
+        <p>Filters go here...</p>
+      </div>
+    </div>
+
+
   </div>
 
-  <!-- Search Bar -->
-  <div class="px-4 py-2">
-    <input
-      type="text"
-      placeholder="Search events..."
-      class="w-full bg-gray-800 text-white placeholder-gray-400 rounded-xl p-3 focus:outline-none"
-    />
-  </div>
 
   <!-- Featured Event -->
   <div class="px-4 space-y-4">
@@ -45,11 +89,11 @@
   </div>
 
   <!-- Near You -->
-  <div class="px-4 space-y-4">
+  <div class="px-4 space-y-4 pt-2">
     <h3 class="text-lg font-semibold">Near You</h3>
     <div class="grid grid-cols-2 gap-4">
-      <!-- Card 1 -->
-      <div class="bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl p-4">
+      <!-- Cards -->
+      <div *ngFor="let event of [1, 2, 3, 4, 5, 6, 7, 8, 9]" class="bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl p-4">
         <div class="flex justify-end">
           <div class="bg-white text-black rounded-lg p-1 text-center text-xs">
             <div class="font-bold">14</div>
@@ -59,19 +103,6 @@
         <div class="mt-12">
           <div class="text-sm">Celaya, México</div>
           <h3 class="font-bold">Neon Party</h3>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-4">
-        <div class="flex justify-end">
-          <div class="bg-white text-black rounded-lg p-1 text-center text-xs">
-            <div class="font-bold">15</div>
-            <div>DEC</div>
-          </div>
-        </div>
-        <div class="mt-12">
-          <div class="text-sm">León, México</div>
-          <h3 class="font-bold">Music Festival</h3>
         </div>
       </div>
     </div>

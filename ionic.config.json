@@ -1,0 +1,7 @@
+{
+  "name": "xo-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

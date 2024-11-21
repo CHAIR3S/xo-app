@@ -4,20 +4,25 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ThemeService {
-  constructor() {
-    this.initializeTheme();
-  }
-
-  private initializeTheme() {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    this.toggleDarkTheme(prefersDark.matches);
-
-    prefersDark.addEventListener('change', (e) => {
-      this.toggleDarkTheme(e.matches);
-    });
-  }
-
-  toggleDarkTheme(shouldEnable: boolean) {
-    document.body.classList.toggle('dark', shouldEnable);
-  }
+    constructor() {
+      this.initializeTheme();
+    }
+  
+    private initializeTheme() {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+      this.setDarkMode(prefersDark.matches);
+  
+      // Escuchar cambios en el tema del sistema
+      prefersDark.addEventListener('change', (e) => {
+        this.setDarkMode(e.matches);
+      });
+    }
+  
+    setDarkMode(isDarkMode: boolean) {
+      if (isDarkMode) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+    }
 }

@@ -1,0 +1,13 @@
+ion-content {
+    --background: var(--background);
+  }
+  
+  button.active-tab {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+  }
+  
+  button.inactive-tab {
+    color: var(--text-muted);
+  }
+  

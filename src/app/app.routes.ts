@@ -7,11 +7,17 @@ export const routes: Routes = [
     title: 'All Events' , 
     component: HomePage
   },
+  {
+    path: 'profile/:profile-name',
+    title: ':profile-name',
+    loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
+  },
 
+  
 
   {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
 ];

@@ -1,0 +1,138 @@
+<ion-content class="h-screen relative">
+  <!-- Perfil Header -->
+  <div
+    class="relative"
+    style="
+      background-image: url('../../assets/img/benito-profile.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      overflow: hidden;
+    "
+  >
+    <!-- Gradiente Oscuro -->
+    <div
+      class="absolute bottom-0 left-0 w-full h-full"
+      style="
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+      "
+    ></div>
+
+    <!-- Métricas -->
+    <div
+      class="absolute bottom-16 w-full flex justify-around items-center text-white text-center"
+    >
+      <div>
+        <h2 class="text-lg font-bold">34.4k</h2>
+        <p class="text-xs text-gray-300">Asistentes</p>
+      </div>
+      <div>
+        <h2 class="text-lg font-bold">32</h2>
+        <p class="text-xs text-gray-300">Fiestas</p>
+      </div>
+      <div>
+        <h2 class="text-lg font-bold">6.8k</h2>
+        <p class="text-xs text-gray-300">Fotos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información del Usuario -->
+  <div
+    class="bg-black text-white px-4 py-4 flex justify-between items-center"
+    style="
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      margin-top: -3rem;
+      position: relative;
+      z-index: 10;
+    "
+  >
+    <div>
+      <h1 class="text-lg font-bold">Macarena Leal</h1>
+      <p class="text-xs text-gray-400">Celaya, México</p>
+    </div>
+    <div
+      class="bg-primary text-white rounded-full p-2 flex items-center justify-center shadow-lg"
+      style="width: 40px; height: 40px;"
+    >
+      <ion-icon name="checkmark"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="bg-black text-white">
+    <div class="flex">
+      <button
+        class="flex-1 py-2 text-center font-semibold border-b-2"
+        style="color: var(--primary); border-color: var(--primary);"
+      >
+        Próximamente
+      </button>
+      <button class="flex-1 py-2 text-center font-semibold text-gray-400">
+        Anteriores
+      </button>
+    </div>
+  </div>
+
+  <!-- Próximos Eventos -->
+  <div class="px-4 mt-4">
+    <h3 class="text-lg font-semibold" style="color: var(--font-white)">Próximamente</h3>
+    <!-- Evento -->
+    <div
+      class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
+      style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
+    >
+      <!-- Gradiente Oscuro -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-1/2"
+        style="
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        "
+      ></div>
+      <!-- Detalles del Evento -->
+      <div class="relative p-6 z-10 text-white">
+        <p class="text-sm">Celaya, México</p>
+        <h2 class="text-lg font-bold">Neon Party</h2>
+        <p class="text-xs text-gray-300">346 asistentes confirmados</p>
+      </div>
+      <!-- Fecha -->
+      <div
+        class="absolute top-4 right-4 bg-white text-black rounded-lg text-center p-2 shadow"
+      >
+        <h3 class="text-xl font-bold">14</h3>
+        <p class="text-xs">Dic</p>
+      </div>
+    </div>
+
+    <h3 class="text-lg font-semibold mt-8" style="color: var(--font-white)">Asistencia confirmada</h3>
+    <!-- Evento Confirmado -->
+    <div
+      class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
+      style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
+    >
+      <!-- Gradiente Oscuro -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-1/2"
+        style="
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        "
+      ></div>
+      <!-- Detalles del Evento -->
+      <div class="relative p-6 z-10 text-white">
+        <p class="text-sm">Celaya, México</p>
+        <h2 class="text-lg font-bold">Christmas Party</h2>
+        <p class="text-xs text-gray-300">139 asistentes confirmados</p>
+      </div>
+      <!-- Fecha -->
+      <div
+        class="absolute top-4 right-4 bg-white text-black rounded-lg text-center p-2 shadow"
+      >
+        <h3 class="text-xl font-bold">25</h3>
+        <p class="text-xs">Dic</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

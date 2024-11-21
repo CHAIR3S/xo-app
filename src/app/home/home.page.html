@@ -1,17 +1,21 @@
 <ion-content
-  class="bg-black text-white h-screen"
-  (ionScroll)="onScroll($event)" 
+  class="h-screen relative"
+  (ionScroll)="onScroll($event)"
   scroll-events="true"
 >
   <!-- Sticky Header -->
-  <div class="sticky top-0 z-50 bg-black"
+  <div
+    class="sticky top-0 z-50 transition-transform duration-300"
+    [ngStyle]="{
+      transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-60%)',
+      backgroundColor: 'var(--background)'
+    }"
   >
     <!-- Header -->
-    <div class="flex justify-between items-center px-4 pt-12"
-    >
+    <div class="flex justify-between items-center px-4 pt-12">
       <div>
-        <div class="text-sm text-gray-400">MONDAY, DEC 21</div>
-        <h1 class="text-2xl font-bold">Events</h1>
+        <div class="text-sm" style="color: var(--text-muted)">MONDAY, DEC 21</div>
+        <h1 class="text-2xl font-bold" style="color: var(--font-black)">Events</h1>
       </div>
       <ion-avatar>
         <img src="/assets/placeholder.svg" alt="Profile" />
@@ -23,108 +27,142 @@
       <input
         type="text"
         placeholder="Search events..."
-        class="flex-grow bg-gray-800 text-white placeholder-gray-400 rounded-xl p-3 focus:outline-none"
+        class="flex-grow rounded-xl p-3 focus:outline-none"
+        style="background-color: var(--card-bg); color: var(--font-black);"
       />
-
-
-    <!-- Sticky Filters (appear on scroll) -->
-    <div
-      *ngIf="showStickyFilters"
-    >
-      <button class="bg-gray-800 p-2 rounded-xl flex items-center space-x-2">
-        <span class="text-white text-sm">Location</span>
-        <ion-icon [icon]="chevronDownIcon" class="text-white"></ion-icon>
+      <button
+        (click)="toggleFilters()"
+        class="p-3 rounded-xl"
+        style="background-color: var(--primary); color: var(--font-white)"
+      >
+        <ion-icon [icon]="chevronDownIcon"></ion-icon>
       </button>
-      <!-- <button class="bg-gray-800 p-2 rounded-xl flex items-center space-x-2">
-        <span class="text-white text-sm">Date</span>
-        <ion-icon [icon]="chevronDownIcon" class="text-white"></ion-icon>
-      </button> -->
     </div>
-
-
-
-
-      <button (click)="toggleFilters()" class="bg-gray-800 p-3 rounded-xl">
-        <ion-icon [icon]="chevronDownIcon" class="text-white"></ion-icon>
-      </button>
-
-
-
-    </div>
-
-    <!-- Filters -->
-    <div *ngIf="showFilters" class="px-4 py-2">
-      <div class="bg-gray-800 rounded-xl p-4">
-        <p>Filters go here...</p>
-      </div>
-    </div>
-
-
   </div>
-
 
   <!-- Featured Event -->
   <div class="px-4 space-y-4">
-    <div class="bg-gradient-to-r from-orange-600 to-pink-600 rounded-3xl p-6">
-      <div class="flex justify-between items-start">
-        <div class="flex -space-x-2">
-          <ion-avatar>
-            <img src="/assets/placeholder.svg" alt="User 1" />
-          </ion-avatar>
-          <ion-avatar>
-            <img src="/assets/placeholder.svg" alt="User 2" />
-          </ion-avatar>
+    <div
+      class="relative rounded-3xl overflow-hidden shadow-lg"
+      style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
+    >
+      <!-- Gradiente para sombra interna -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-1/2"
+        style="
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        "
+      ></div>
+      <div class="relative p-6 z-10">
+        <div class="flex justify-between items-start">
+          <div class="flex -space-x-2">
+            <ion-avatar>
+              <img src="/assets/placeholder.svg" alt="User 1" />
+            </ion-avatar>
+            <ion-avatar>
+              <img src="/assets/placeholder.svg" alt="User 2" />
+            </ion-avatar>
+          </div>
+          <div
+            class="rounded-lg text-center p-2 shadow"
+            style="background-color: var(--card-bg); color: var(--font-black)"
+          >
+            <div class="text-xl font-bold">21</div>
+            <div class="text-xs">DEC</div>
+          </div>
         </div>
-        <div class="bg-white text-black rounded-lg p-2 text-center">
-          <div class="text-xl font-bold">21</div>
-          <div class="text-xs">DEC</div>
+        <div class="mt-12">
+          <div
+            class="text-sm"
+            style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+          >
+            Art Gallery
+          </div>
+          <h2
+            class="text-2xl font-bold"
+            style="color: var(--font-white); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+          >
+            Cevin Sephora
+          </h2>
+          <div
+            class="text-sm"
+            style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+          >
+            Voted 1,456 Participants
+          </div>
         </div>
-      </div>
-      <div class="mt-20">
-        <div class="text-sm">Art Gallery</div>
-        <h2 class="text-2xl font-bold">Cevin Sephora</h2>
-        <div class="text-sm opacity-75">Voted 1,456 Participants</div>
       </div>
     </div>
   </div>
 
   <!-- Near You -->
-  <div class="px-4 space-y-4 pt-2">
-    <h3 class="text-lg font-semibold">Near You</h3>
+  <div class="px-4 space-y-4 pt-4">
+    <h3 class="text-lg font-semibold" style="color: var(--font-black)">Near You</h3>
     <div class="grid grid-cols-2 gap-4">
       <!-- Cards -->
-      <div *ngFor="let event of [1, 2, 3, 4, 5, 6, 7, 8, 9]" class="bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl p-4">
-        <div class="flex justify-end">
-          <div class="bg-white text-black rounded-lg p-1 text-center text-xs">
-            <div class="font-bold">14</div>
-            <div>DEC</div>
+      <div
+        *ngFor="let event of [1, 2, 3, 4, 5, 6, 7]"
+        class="relative rounded-2xl overflow-hidden shadow-lg"
+        style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
+      >
+        <!-- Gradiente para sombra interna -->
+        <div
+          class="absolute bottom-0 left-0 w-full h-1/2"
+          style="
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          "
+        ></div>
+        <div class="relative p-4 z-10">
+          <div class="flex justify-end">
+            <div
+              class="rounded-lg text-center p-2 shadow"
+              style="background-color: var(--card-bg); color: var(--font-black)"
+            >
+              <div class="font-bold">14</div>
+              <div class="text-xs">DEC</div>
+            </div>
           </div>
-        </div>
-        <div class="mt-12">
-          <div class="text-sm">Celaya, México</div>
-          <h3 class="font-bold">Neon Party</h3>
+          <div class="mt-12">
+            <div
+              class="text-sm"
+              style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+            >
+              Celaya, México
+            </div>
+            <h3
+              class="font-bold"
+              style="color: var(--font-white); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+            >
+              Neon Party
+            </h3>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Bottom Navigation -->
-  <div class="fixed bottom-0 left-0 w-full bg-gray-900/50 backdrop-blur-lg flex justify-around items-center p-4">
-    <button class="flex flex-col items-center gap-1 text-primary">
-      <ion-icon [icon]="calendarIcon" class="text-2xl"></ion-icon>
-      <span class="text-xs">Calendar</span>
+  <div
+    class="sticky bottom-[-1px] left-0 w-full p-4 flex justify-around items-center shadow-lg duration-300 z-50 "
+    [ngStyle]="{
+      backgroundColor: 'var(--background)'
+    }"
+  >
+    <button class="flex flex-col items-center gap-1 ">
+      <ion-icon [icon]="calendarIcon" class="text-2xl" style="color: var(--primary)"></ion-icon>
+      <span class="text-xs" style="color: var(--primary)">Calendar</span>
     </button>
     <button class="flex flex-col items-center gap-1">
-      <ion-icon [icon]="gridIcon" class="text-2xl"></ion-icon>
-      <span class="text-xs">Collections</span>
+      <ion-icon [icon]="gridIcon" class="text-2xl" style="color: var(--primary)"></ion-icon>
+      <span class="text-xs" style="color: var(--primary)">Collections</span>
     </button>
     <button class="flex flex-col items-center gap-1">
-      <ion-icon [icon]="searchIcon" class="text-2xl"></ion-icon>
-      <span class="text-xs">Search</span>
+      <ion-icon [icon]="searchIcon" class="text-2xl" style="color: var(--primary)"></ion-icon>
+      <span class="text-xs" style="color: var(--primary)">Search</span>
     </button>
     <button class="flex flex-col items-center gap-1">
-      <ion-icon [icon]="menuIcon" class="text-2xl"></ion-icon>
-      <span class="text-xs">Menu</span>
+      <ion-icon [icon]="menuIcon" class="text-2xl" style="color: var(--primary)"></ion-icon>
+      <span class="text-xs" style="color: var(--primary)">Menu</span>
     </button>
   </div>
 </ion-content>

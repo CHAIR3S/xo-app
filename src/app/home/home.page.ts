@@ -9,11 +9,7 @@ import { chevronDown, calendar, search, grid, menu } from 'ionicons/icons';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-  ]
+  imports: [IonicModule, CommonModule, FormsModule],
 })
 export class HomePage implements OnInit {
   calendarIcon = calendar;
@@ -22,20 +18,36 @@ export class HomePage implements OnInit {
   menuIcon = menu;
   chevronDownIcon = chevronDown;
 
-  showFilters = false;
-  showStickyFilters = false;
+  previousScrollPosition = 0;
+  isHeaderVisible = true;
+  isBottomNavVisible = true;
+  showFilters = false; // Estado para mostrar u ocultar los filtros
 
   constructor() {}
 
   ngOnInit() {}
 
+  // Manejar el evento de scroll
   onScroll(event: any) {
-    const yOffset = event.detail.scrollTop;
-    this.showStickyFilters = yOffset > 100; // Mostrar filtros si se hace scroll hacia abajo más de 100px
-    console.log(yOffset); // Debug para verificar el scroll
+    const currentScrollPosition = event.detail.scrollTop;
+
+    // Detectar si el scroll es hacia abajo o hacia arriba
+    if (currentScrollPosition > this.previousScrollPosition) {
+      // Scroll hacia abajo
+      this.isHeaderVisible = false;
+      this.isBottomNavVisible = false;
+    } else {
+      // Scroll hacia arriba
+      this.isHeaderVisible = true;
+      this.isBottomNavVisible = true;
+    }
+
+    this.previousScrollPosition = currentScrollPosition;
   }
 
+  // Alternar visibilidad de filtros
   toggleFilters() {
     this.showFilters = !this.showFilters;
+    console.log('Filters toggled:', this.showFilters);
   }
 }

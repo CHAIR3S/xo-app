@@ -42,3 +42,35 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+:root {
+    --background: #e4e4e4;
+    --font-white: #ffffff;
+    --font-black: #1a1a1a;
+    --primary: #4d4cff;
+    --secondary: #ff0010;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-shadow: rgba(0, 0, 0, 0.15);
+    --text-muted: #6e6e73;
+    --text-shadow-light: rgba(255, 255, 255, 0.8);
+    --text-shadow-dark: rgba(0, 0, 0, 0.6);
+  }
+  
+  .dark {
+    --background: #1a1a1a;
+    --font-white: #e4e4e4;
+    --font-black: #ffffff;
+    --primary: #4d4cff;
+    --card-bg: rgba(26, 26, 26, 0.9);
+    --card-shadow: rgba(255, 255, 255, 0.1);
+    --text-muted: #8e8e93;
+    --text-shadow-light: rgba(255, 255, 255, 0.6);
+    --text-shadow-dark: rgba(0, 0, 0, 0.8);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--font-black);
+  }
+  

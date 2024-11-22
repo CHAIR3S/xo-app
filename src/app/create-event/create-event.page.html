@@ -1,0 +1,160 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <h1 class="ion-text-uppercase">Crear Evento</h1>
+    <p>Llena el formulario para continuar</p>
+  </div>
+
+  <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
+    <!-- Información Básica -->
+    <ion-item>
+      <ion-label position="floating">Nombre del evento</ion-label>
+      <ion-input formControlName="name" placeholder="Ej: Neon Party 2024"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción (Opcional)</ion-label>
+      <ion-textarea formControlName="description" placeholder="Describe tu evento..."></ion-textarea>
+    </ion-item>
+
+    <!-- Fecha y Hora -->
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime
+        display-format="YYYY-MM-DD"
+        picker-format="YYYY-MM-DD"
+        formControlName="date"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora de Inicio</ion-label>
+      <ion-datetime
+        display-format="HH:mm"
+        picker-format="HH:mm"
+        formControlName="startTime"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora de Fin</ion-label>
+      <ion-datetime
+        display-format="HH:mm"
+        picker-format="HH:mm"
+        formControlName="endTime"
+      ></ion-datetime>
+    </ion-item>
+
+    <!-- Ubicación y Capacidad -->
+    <ion-item>
+      <ion-label position="floating">Ubicación</ion-label>
+      <ion-input formControlName="location" placeholder="Dirección del evento"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Número de personas</ion-label>
+      <ion-input
+        type="number"
+        formControlName="capacity"
+        placeholder="Máx. 1000"
+      ></ion-input>
+    </ion-item>
+
+    <!-- Temática y Precio -->
+    <ion-item>
+      <ion-label>Temática / Código de vestimenta</ion-label>
+      <ion-select formControlName="theme" placeholder="Seleccionar temática">
+        <ion-select-option value="casual">Casual</ion-select-option>
+        <ion-select-option value="formal">Formal</ion-select-option>
+        <ion-select-option value="neon">Neón</ion-select-option>
+        <ion-select-option value="costume">Disfraz</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Costo del boleto</ion-label>
+      <ion-input
+        type="number"
+        formControlName="price"
+        placeholder="0.00"
+      ></ion-input>
+    </ion-item>
+
+    <!-- Foto de Portada -->
+    <ion-item>
+      <ion-label>Foto de portada (Opcional)</ion-label>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        style="margin-top: 10px;"
+      />
+    </ion-item>
+
+    <!-- Servicios Disponibles -->
+    <ion-item-divider>
+      <ion-label>Servicios disponibles</ion-label>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="amenities.security"></ion-checkbox>
+      <ion-label>Seguridad</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="amenities.medical"></ion-checkbox>
+      <ion-label>Equipo médico</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="amenities.pool"></ion-checkbox>
+      <ion-label>Alberca</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="amenities.alcohol"></ion-checkbox>
+      <ion-label>Venta de alcohol</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="amenities.vape"></ion-checkbox>
+      <ion-label>Venta de cigarros electrónicos</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="amenities.food"></ion-checkbox>
+      <ion-label>Comida</ion-label>
+    </ion-item>
+
+    <!-- Opciones Adicionales -->
+    <ion-item>
+      <ion-label>Visibilidad del evento</ion-label>
+      <ion-toggle formControlName="isPublic"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Permitir fotos de usuarios</ion-label>
+      <ion-toggle formControlName="allowUserPhotos"></ion-toggle>
+    </ion-item>
+
+    <!-- Información de Contacto -->
+    <ion-item>
+      <ion-label position="floating"
+        >Información de contacto para boletos</ion-label
+      >
+      <ion-textarea
+        formControlName="contact"
+        placeholder="Información de contacto para la venta de boletos..."
+      ></ion-textarea>
+    </ion-item>
+
+    <!-- Botón Crear Evento -->
+    <ion-button
+      expand="full"
+      type="submit"
+      [disabled]="!eventForm.valid"
+      color="primary"
+    >
+      Crear Evento
+    </ion-button>
+  </form>
+</ion-content>

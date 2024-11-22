@@ -41,17 +41,21 @@
 
   <!-- Información del Usuario -->
   <div
-    class="bg-black text-white px-4 py-4 flex justify-between items-center"
+    class="px-4 py-4 flex justify-between items-center"
     style="
       border-top-left-radius: 2rem;
       border-top-right-radius: 2rem;
       margin-top: -3rem;
       position: relative;
       z-index: 10;
+      color: var(--font-black);
     "
+    [ngStyle]="{
+      backgroundColor: 'var(--background)'
+    }"
   >
     <div>
-      <h1 class="text-lg font-bold">Macarena Leal</h1>
+      <h1 class="text-lg font-bold">Bad Bunny</h1>
       <p class="text-xs text-gray-400">Celaya, México</p>
     </div>
     <div
@@ -63,23 +67,32 @@
   </div>
 
   <!-- Tabs -->
-  <div class="bg-black text-white">
+  <div 
+  [ngStyle]="{
+    backgroundColor: 'var(--background)'
+  }">
     <div class="flex">
       <button
-        class="flex-1 py-2 text-center font-semibold border-b-2"
-        style="color: var(--primary); border-color: var(--primary);"
+        class="flex-1 py-2 text-center font-semibold rounded-sm"
+        style="color: var(--font-black); border-color: var(--primary); background-color: var(--primary); border: 1px solid gray; border-left: 0px;"
       >
         Próximamente
       </button>
-      <button class="flex-1 py-2 text-center font-semibold text-gray-400">
+      <button class="flex-1 py-2 text-center font-semibold text-gray-400"
+        style="border: 1px solid gray; border-right: 0px;"
+      >
         Anteriores
       </button>
     </div>
   </div>
 
   <!-- Próximos Eventos -->
-  <div class="px-4 mt-4">
-    <h3 class="text-lg font-semibold" style="color: var(--font-white)">Próximamente</h3>
+  <div class="px-4 mt-4"
+  [ngStyle]="{
+    backgroundColor: 'var(--background)'
+  }"
+  >
+    <h3 class="text-lg font-semibold" style="color: var(--font-black)">Próximamente</h3>
     <!-- Evento -->
     <div
       class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
@@ -107,7 +120,7 @@
       </div>
     </div>
 
-    <h3 class="text-lg font-semibold mt-8" style="color: var(--font-white)">Asistencia confirmada</h3>
+    <h3 class="text-lg font-semibold mt-8" style="color: var(--font-black)">Asistencia confirmada</h3>
     <!-- Evento Confirmado -->
     <div
       class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
@@ -132,7 +145,9 @@
       >
         <h3 class="text-xl font-bold">25</h3>
         <p class="text-xs">Dic</p>
-      </div>
+      </div>9
     </div>
   </div>
+
+
 </ion-content>

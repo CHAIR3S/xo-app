@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { calendar, search, grid, menu } from 'ionicons/icons';
 
@@ -8,7 +9,7 @@ import { calendar, search, grid, menu } from 'ionicons/icons';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule]
+  imports: [IonicModule, CommonModule, RouterModule]
 })
 export class NavbarComponent  implements OnInit {
 
@@ -21,5 +22,9 @@ export class NavbarComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {}
+
+  link(){
+    console.log('el trapero e traperos');
+  }
 
 }

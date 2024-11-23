@@ -12,7 +12,6 @@ export class ThemeService {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
       this.setDarkMode(prefersDark.matches);
   
-      // Escuchar cambios en el tema del sistema
       prefersDark.addEventListener('change', (e) => {
         this.setDarkMode(e.matches);
       });

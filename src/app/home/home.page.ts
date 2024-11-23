@@ -18,23 +18,19 @@ export class HomePage implements OnInit {
   previousScrollPosition = 0;
   isHeaderVisible = true;
   isBottomNavVisible = true;
-  showFilters = false; // Estado para mostrar u ocultar los filtros
+  showFilters = false; 
 
   constructor() {}
 
   ngOnInit() {}
 
-  // Manejar el evento de scroll
   onScroll(event: any) {
     const currentScrollPosition = event.detail.scrollTop;
 
-    // Detectar si el scroll es hacia abajo o hacia arriba
     if (currentScrollPosition > this.previousScrollPosition) {
-      // Scroll hacia abajo
       this.isHeaderVisible = false;
       this.isBottomNavVisible = false;
     } else {
-      // Scroll hacia arriba
       this.isHeaderVisible = true;
       this.isBottomNavVisible = true;
     }
@@ -42,7 +38,6 @@ export class HomePage implements OnInit {
     this.previousScrollPosition = currentScrollPosition;
   }
 
-  // Alternar visibilidad de filtros
   toggleFilters() {
     this.showFilters = !this.showFilters;
     console.log('Filters toggled:', this.showFilters);

@@ -1,0 +1,58 @@
+
+<div class="relative inline-block w-full">
+  <!-- Botón del selector -->
+  <button
+    class="flex justify-between items-center w-full px-4 py-2 text-sm rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 "
+    [ngClass]="classes"
+    (click)="toggleDropdown()"
+  >
+    <span>{{ selectedOption }}</span>
+    <svg
+      class="w-5 h-5 text-gray-400"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+
+  <!-- Opciones del menú desplegable -->
+  <div
+    *ngIf="isOpen"
+    class="absolute mt-2 w-full bg-white rounded-md shadow-lg dark:bg-gray-800"
+  >
+    <ul class="py-1 text-sm text-gray-700 dark:text-white">
+      <li
+        *ngFor="let option of options"
+        (click)="selectOption(option)"
+        class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+      >
+        <svg
+          *ngIf="option === selectedOption"
+          class="w-4 h-4 text-indigo-500 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+        <span [class.font-semibold]="option === selectedOption">
+          {{ option }}
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

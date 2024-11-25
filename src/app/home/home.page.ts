@@ -4,13 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { chevronDown, calendar, search, grid, menu } from 'ionicons/icons';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { EventService } from '../service/event.service';
+import { firstValueFrom } from 'rxjs';
+import { CardPrimaryComponent } from "../card-primary/card-primary.component";
+import { FormatDatePipe } from '../format-date.pipe';
+import {Event} from '../../model/event.model'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, NavbarComponent],
+  imports: [IonicModule, CommonModule, FormsModule, CardPrimaryComponent, FormatDatePipe],
 })
 export class HomePage implements OnInit {
   chevronDownIcon = chevronDown;
@@ -19,10 +24,17 @@ export class HomePage implements OnInit {
   isHeaderVisible = true;
   isBottomNavVisible = true;
   showFilters = false; 
+  events: any = [];
 
-  constructor() {}
+  constructor(private eventService: EventService) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.events = await firstValueFrom(this.eventService.getAll());
+
+  
+    console.log(this.events);
+
+  }
 
   onScroll(event: any) {
     const currentScrollPosition = event.detail.scrollTop;

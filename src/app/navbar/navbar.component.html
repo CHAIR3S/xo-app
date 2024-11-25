@@ -20,10 +20,12 @@ class="fixed bottom-[-1px] left-0 w-full p-4 flex justify-around items-center sh
   </a>
 
 
-  <button class="flex flex-col items-center gap-1">
-    <ion-icon [icon]="searchIcon" class="text-2xl" style="color: var(--primary)"></ion-icon>
-    <span class="text-xs" style="color: var(--primary)">Search</span>
-  </button>
+  <a routerLink="/app/page/search">
+    <button class="flex flex-col items-center gap-1">
+      <ion-icon [icon]="searchIcon" class="text-2xl" style="color: var(--primary)"></ion-icon>
+      <span class="text-xs" style="color: var(--primary)">Search</span>
+    </button>
+  </a>
 
   
   <a routerLink="/app/page/profile/benito" (click)="link()">

@@ -36,6 +36,9 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
+// @import 'geist/font/sans.css';
+// @import 'geist/font/mono.css';
+
 
 
 @tailwind base;
@@ -55,6 +58,18 @@
     --text-muted: #6e6e73;
     --text-shadow-light: rgba(255, 255, 255, 0.8);
     --text-shadow-dark: rgba(0, 0, 0, 0.6);
+
+    
+    --ion-font-family: 'Geist', sans-serif;
+
+    
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+
+
+
   }
   
   .dark {
@@ -67,10 +82,56 @@
     --text-muted: #8e8e93;
     --text-shadow-light: rgba(255, 255, 255, 0.6);
     --text-shadow-dark: rgba(0, 0, 0, 0.8);
+    
+
+    
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
   }
   
   body {
     background-color: var(--background);
     color: var(--font-black);
+    
+    
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-size: .875rem;
+    font-style: normal;
   }
+
+
+
+.label {
+  @apply bg-indigo-50; 
+  @apply rounded-md;
+  @apply py-2;
+  @apply px-3;
+  @apply text-sm;
+  @apply placeholder:text-gray-500;
+  @apply w-full
+}
+
+.dark .label {
+  @apply bg-gray-800; 
+}
   
+
+
+.bg-secondary {
+  @apply bg-indigo-50;
+}
+
+.dark .bg-secondary {
+  @apply bg-gray-900;
+}
+
+
+.card-secondary {
+  @apply bg-indigo-200;
+}
+
+.dark .card-secondary {
+  @apply bg-gray-800;
+}

@@ -1,0 +1,72 @@
+  <!-- Featured Event -->
+  <div class="space-y-4 ">
+    <div
+      class="relative rounded-3xl overflow-hidden shadow-lg"
+      [ngStyle]="image 
+      ? { 'background-image': 'url(data:image/png;base64,' + image + ')' } 
+      : { 'background-image': 'url(../../assets/img/coming-soon-xo.jpg)' }"
+      
+      style=" background-size: cover; background-position: center;"
+      
+      
+    >
+    
+      <!-- Gradiente para sombra interna -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-1/2 "
+        style="
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        "
+      ></div>
+      <div class="relative z-10 "
+        [ngClass]="size == 'sm' ? 'p-3' : 'p-6'"
+      >
+        <div class="flex justify-between items-start ">
+          <div class="flex -space-x-2 ">
+            <ion-avatar>
+              <!-- <img src="/assets/placeholder.svg" alt="User 1" /> -->
+              <ion-icon name="contact" class="text-white size-14 z-50"></ion-icon>
+            </ion-avatar>
+            <ion-avatar>
+              <!-- <img src="/assets/placeholder.svg" alt="User 2" /> -->
+              <ion-icon name="contact"></ion-icon>
+            </ion-avatar>
+          </div>
+          <div
+            class="rounded-lg text-center p-2 shadow "
+            style="background-color: var(--card-bg); color: var(--font-black)"
+          >
+            <div class="text-xl font-bold">{{day}}</div>
+            <div class="text-xs">{{month}}</div>
+          </div>
+        </div>
+        <div [ngClass]="size=='sm' ? 'mt-2 max-h-10' : 'mt-10'"> 
+          <div
+            class="text-sm"
+            style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+          >
+
+            <span *ngIf="size != 'sm'">
+              {{type}}
+            </span>
+          </div>
+          <h2
+            class=" font-bold"
+            [ngClass]="size == 'sm' ? 'text-base mt-6' : 'text-2xl'"
+            style="color: var(--font-white); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+          >
+            {{name}}
+          </h2>
+          <div
+            class="text-sm"
+            style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
+          >
+            <span *ngIf="size != 'sm'">
+              Voted {{participants}} Participants
+            </span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

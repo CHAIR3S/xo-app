@@ -27,8 +27,7 @@
       <input
         type="text"
         placeholder="Search events..."
-        class="flex-grow rounded-xl p-3 focus:outline-none"
-        style="background-color: var(--card-bg); color: var(--font-black);"
+        class="label flex-grow p-3 focus:outline-none"
       />
       <button
         (click)="toggleFilters()"
@@ -40,59 +39,10 @@
     </div>
   </div>
 
-  <!-- Featured Event -->
-  <div class="px-4 space-y-4">
-    <div
-      class="relative rounded-3xl overflow-hidden shadow-lg"
-      style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
-    >
-      <!-- Gradiente para sombra interna -->
-      <div
-        class="absolute bottom-0 left-0 w-full h-1/2"
-        style="
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-        "
-      ></div>
-      <div class="relative p-6 z-10">
-        <div class="flex justify-between items-start">
-          <div class="flex -space-x-2">
-            <ion-avatar>
-              <img src="/assets/placeholder.svg" alt="User 1" />
-            </ion-avatar>
-            <ion-avatar>
-              <img src="/assets/placeholder.svg" alt="User 2" />
-            </ion-avatar>
-          </div>
-          <div
-            class="rounded-lg text-center p-2 shadow"
-            style="background-color: var(--card-bg); color: var(--font-black)"
-          >
-            <div class="text-xl font-bold">21</div>
-            <div class="text-xs">DEC</div>
-          </div>
-        </div>
-        <div class="mt-12">
-          <div
-            class="text-sm"
-            style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
-          >
-            Art Gallery
-          </div>
-          <h2
-            class="text-2xl font-bold"
-            style="color: var(--font-white); text-shadow: 0 2px 4px var(--text-shadow-dark);"
-          >
-            Cevin Sephora
-          </h2>
-          <div
-            class="text-sm"
-            style="color: var(--text-muted); text-shadow: 0 2px 4px var(--text-shadow-dark);"
-          >
-            Voted 1,456 Participants
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <div class="px-5">
+
+    <app-card-primary [day]="'12'" [month]="'DEC'" />
   </div>
 
   <!-- Near You -->
@@ -101,12 +51,13 @@
     <div class="grid grid-cols-2 gap-4">
       <!-- Cards -->
       <div
-        *ngFor="let event of [1, 2, 3, 4, 5, 6, 7]"
+        *ngFor="let event of events"
         class="relative rounded-2xl overflow-hidden shadow-lg"
-        style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
+        style="background-size: cover; background-position: center;"
       >
+      
         <!-- Gradiente para sombra interna -->
-        <div
+        <!-- <div
           class="absolute bottom-0 left-0 w-full h-1/2"
           style="
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
@@ -136,7 +87,15 @@
               Neon Party
             </h3>
           </div>
-        </div>
+        </div> -->
+
+        <app-card-primary [day]="event.date | formatDate:'day'" 
+        [month]="event.date | formatDate:'month'" 
+        [image]="(event.id == 'dqjwi4' ? '' : event.cover)"
+        [name]="event.name"
+       
+        [size]="'sm'"/>
+
       </div>
     </div>
   </div>

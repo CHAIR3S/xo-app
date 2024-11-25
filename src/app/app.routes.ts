@@ -21,8 +21,13 @@ export const routes: Routes = [
           },
           {
             path: 'create-event',
-            loadComponent: () => import('./create-event/create-event.page').then(m => m.CreateEventComponent) 
+            loadComponent: () => import('./create-event/create-event.page').then(m => m.CreateEventPage) 
+          },
+          {
+            path: 'search',
+            loadComponent: () => import('./search/search.page').then(m => m.SearchPage)
           }
+          
         ]
       }
     ]
@@ -32,5 +37,5 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/app/page/home',
     pathMatch: 'full'
-  },
+  }
 ];

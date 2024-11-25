@@ -1,0 +1,20 @@
+ion-content {
+    background-color: var(--background);
+  
+    .form-item {
+      --background: var(--input-bg);
+      --color: var(--font-primary);
+      --placeholder-color: var(--text-muted);
+    }
+  
+    .rounded-full {
+      border-radius: 9999px;
+    }
+  
+    ion-button {
+      --color: var(--font-primary);
+      --background: var(--input-bg);
+      border-radius: 9999px;
+    }
+  }
+  

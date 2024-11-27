@@ -135,3 +135,12 @@
 .dark .card-secondary {
   @apply bg-gray-800;
 }
+
+
+.bg-color-primary {
+  background-color: var(--primary);
+}
+
+.text-color-primary{
+  color: var(--primary);
+}

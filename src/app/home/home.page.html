@@ -29,13 +29,16 @@
         placeholder="Search events..."
         class="label flex-grow p-3 focus:outline-none"
       />
-      <button
+      <!-- <button
         (click)="toggleFilters()"
         class="p-3 rounded-xl"
         style="background-color: var(--primary); color: var(--font-white)"
       >
         <ion-icon [icon]="chevronDownIcon"></ion-icon>
-      </button>
+      </button> -->
+
+      <app-drop-down classes="bg-color-primary hover:bg-indigo-700 text-white "/>
+
     </div>
   </div>
 
@@ -91,7 +94,7 @@
 
         <app-card-primary [day]="event.date | formatDate:'day'" 
         [month]="event.date | formatDate:'month'" 
-        [image]="(event.id == 'dqjwi4' ? '' : event.cover)"
+        [image]="event.cover"
         [name]="event.name"
        
         [size]="'sm'"/>
@@ -99,6 +102,9 @@
       </div>
     </div>
   </div>
+
+
+  <div class="min-h-[13%]"></div>
 
   <!-- <app-navbar/> -->
 

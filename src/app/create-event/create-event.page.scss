@@ -1,0 +1,19 @@
+/* Estilo para la previsualización de la imagen */
+img {
+    border-radius: 0.75rem; /* Match rounded corners */
+  }
+  
+  /* Efecto del botón en la imagen */
+  button {
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #4d4cff;
+  }
+  
+  /* Efecto de opacidad en el contenedor */
+  div:hover .bg-opacity-50 {
+    opacity: 1;
+  }
+  

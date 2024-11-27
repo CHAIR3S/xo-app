@@ -9,13 +9,14 @@ import { firstValueFrom } from 'rxjs';
 import { CardPrimaryComponent } from "../card-primary/card-primary.component";
 import { FormatDatePipe } from '../format-date.pipe';
 import {Event} from '../../model/event.model'
+import { DropDownComponent } from '../drop-down/drop-down.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, CardPrimaryComponent, FormatDatePipe],
+  imports: [IonicModule, CommonModule, FormsModule, CardPrimaryComponent, FormatDatePipe, DropDownComponent],
 })
 export class HomePage implements OnInit {
   chevronDownIcon = chevronDown;
@@ -26,11 +27,13 @@ export class HomePage implements OnInit {
   showFilters = false; 
   events: any = [];
 
-  constructor(private eventService: EventService) {}
+  constructor(
+    private eventService: EventService,
+  ) {}
 
   async ngOnInit() {
+    console.log('consultando events')
     this.events = await firstValueFrom(this.eventService.getAll());
-
   
     console.log(this.events);
 

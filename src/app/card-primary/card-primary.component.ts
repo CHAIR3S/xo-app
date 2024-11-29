@@ -17,6 +17,7 @@ export class CardPrimaryComponent  implements OnInit {
   @Input() participants = 0;
   @Input() image: string = '' 
   @Input() size = 'lg'
+  @Input() imageFormat = 'jpeg'
 
   constructor() {
    }

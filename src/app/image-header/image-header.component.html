@@ -1,0 +1,41 @@
+
+<div
+class="relative"
+style="
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  overflow: hidden;
+"
+[style]="'background-image: url(' + image64 + ')'"
+>
+<!-- Gradiente Oscuro -->
+<div
+  class="absolute bottom-0 left-0 w-full h-full"
+  style="
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  "
+></div>
+
+<ng-content />
+
+<!-- Métricas -->
+<!-- <div
+  class="absolute bottom-16 w-full flex justify-around items-center text-white text-center"
+>
+  <div>
+    <h2 class="text-lg font-bold">34.4k</h2>
+    <p class="text-xs text-gray-300">Asistentes</p>
+  </div>
+  <div>
+    <h2 class="text-lg font-bold">32</h2>
+    <p class="text-xs text-gray-300">Fiestas</p>
+  </div>
+  <div>
+    <h2 class="text-lg font-bold">6.8k</h2>
+    <p class="text-xs text-gray-300">Fotos</p>
+  </div>
+</div> -->
+</div>

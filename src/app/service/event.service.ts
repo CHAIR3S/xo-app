@@ -14,4 +14,9 @@ export class EventService {
   getAll(){
     return this.http.get(this.baseUrl);
   }
+
+  save(event: Event){
+    return this.http.post(this.baseUrl, event);
+  }
+
 }

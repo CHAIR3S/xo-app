@@ -1,32 +1,23 @@
-<ion-content
-  class="h-screen relative"
->
-
-  <div class="min-h-screen p-4 pb-24"
-    style="background-color: var(--background); color: var(--text-black);"
-  >
+<ion-content class="h-screen relative">
+  <div class="min-h-screen p-4 pb-24" style="background-color: var(--background); color: var(--text-black);">
     <div class="max-w-2xl mx-auto space-y-8">
       <div class="space-y-2">
         <h1 class="text-2xl font-semibold">Crear Evento</h1>
         <p class="text-gray-400">Llena el formulario para continuar</p>
       </div>
 
-      <form class="space-y-6">
+      <form [formGroup]="createEventForm" (ngSubmit)="onSubmit()" class="space-y-6">
         <!-- Nombre y Descripción -->
         <div class="space-y-4">
           <div class="space-y-2">
             <label for="name">Nombre del evento</label>
-            <input
-              id="name"
-              placeholder="Ej: Neon Party 2024"
-              class="label"
-            />
+            <input id="name" formControlName="name" placeholder="Ej: Neon Party 2024" class="label" />
           </div>
-
           <div class="space-y-2">
             <label for="description">Descripción (Opcional)</label>
             <textarea
               id="description"
+              formControlName="description"
               placeholder="Describe tu evento..."
               class="label min-h-[100px]"
             ></textarea>
@@ -34,44 +25,26 @@
         </div>
 
         <!-- Fecha y Hora -->
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div class="space-y-2">
+        <div class="flex gap-2">
+          <div class="w-[48vw]">
             <label for="date">Fecha</label>
-            <input
-              id="date"
-              type="date"
-              class="label"
-            />
+            <input id="date" type="date" formControlName="date" class="label" />
           </div>
-          <div class="space-y-2">
-            <label for="time">Hora</label>
-            <input
-              id="time"
-              type="time"
-              class="label"
-            />
+          <div class="w-[48vw]">
+            <label for="startTime">Hora Inicio</label>
+            <input id="startTime" type="time" formControlName="startTime" class="label" />
           </div>
+        </div>
+        <div class="max-w-[44vw]">
+          <label for="endTime">Hora Fin</label>
+          <input id="endTime" type="time" formControlName="endTime" class="label" />
         </div>
 
         <!-- Ubicación y Capacidad -->
         <div class="grid gap-4 sm:grid-cols-2">
           <div class="space-y-2">
             <label for="location">Ubicación</label>
-            <input
-              id="location"
-              placeholder="Dirección del evento"
-              class="label"
-            />
-          </div>
-          <div class="space-y-2">
-            <label for="capacity">Número de personas</label>
-            <input
-              id="capacity"
-              type="number"
-              max="1000"
-              placeholder="Máx. 1000"
-              class="label"
-            />
+            <input id="location" formControlName="location" placeholder="Dirección del evento" class="label" />
           </div>
         </div>
 
@@ -79,7 +52,7 @@
         <div class="grid gap-4 sm:grid-cols-2">
           <div class="space-y-2">
             <label for="theme">Temática / Código de vestimenta</label>
-            <select id="theme" class="label">
+            <select id="theme" formControlName="theme" class="label">
               <option value="" disabled selected>Seleccionar temática</option>
               <option value="casual">Casual</option>
               <option value="formal">Formal</option>
@@ -87,132 +60,111 @@
               <option value="costume">Disfraz</option>
             </select>
           </div>
-          <div class="space-y-2">
-            <label for="price">Costo del boleto</label>
-            <input
-              id="price"
-              type="number"
-              placeholder="0.00"
-              class="label"
-            />
+        </div>
+
+        <div class="flex gap-2">
+          <div>
+            <label for="ticketPrice">Costo del boleto</label>
+            <input id="ticketPrice" formControlName="ticketPrice" type="number" placeholder="0.00" class="label" />
+          </div>
+          <div>
+            <label for="maxGuests">Número de personas</label>
+            <input id="maxGuests" formControlName="maxGuests" type="number" max="1000" placeholder="Máx. 1000" class="label" />
           </div>
         </div>
 
-        <!-- Foto de portada -->
-        <!-- <div class="space-y-2">
-          <label>Foto de portada (Opcional)</label>
-          <div class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center">
-            <button type="button" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">
-              Subir imagen
-            </button>
-          </div>
-        </div> -->
-
-
-
-
-
-
-          <!-- Foto de portada -->
-          <div
-            class="relative border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer min-h-48"
-            (click)="fileInput.click()"
+        <div
+        class="relative border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer h-48"
+        (click)="fileInput.click()"
+      >
+        <!-- Previsualización de la imagen -->
+        <img
+          *ngIf="selectedImageUrl"
+          [src]="selectedImageUrl"
+          alt="Preview"
+          class="absolute inset-0 w-full h-full object-cover rounded-lg"
+        />
+      
+        <!-- Botón encima de la imagen -->
+        <div
+          class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 rounded-lg opacity-0 hover:opacity-100 transition-opacity"
+        >
+          <button
+            type="button"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
           >
-            <!-- Previsualización de la imagen -->
-            <img
-              *ngIf="selectedImage"
-              [src]="selectedImage"
-              alt="Preview"
-              class="absolute inset-0 w-full h-full object-cover rounded-lg"
-            />
+            Cambiar imagen
+          </button>
+        </div>
+      
+        <!-- Texto inicial -->
+        <div *ngIf="!selectedImageUrl" class="text-gray-400">
+          Haz clic aquí para subir una imagen
+        </div>
+      
+        <!-- Input file oculto -->
+        <input
+          #fileInput
+          type="file"
+          accept="image/*"
+          class="hidden"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      
 
-            <!-- Botón encima de la imagen -->
-            <div
-              class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 rounded-lg opacity-0 hover:opacity-100 transition-opacity"
-            >
-              <button
-                type="button"
-                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
-              >
-                Cambiar imagen
-              </button>
-            </div>
-
-            <!-- Texto inicial -->
-            <div *ngIf="!selectedImage" class="text-gray-400">
-              Haz clic aquí para subir una imagen
-            </div>
-
-            <!-- Input file oculto -->
+      <!-- Servicios disponibles -->
+      <div class="space-y-3">
+        <label>Servicios disponibles</label>
+        <div class="grid gap-2 sm:grid-cols-2">
+          <div class="flex gap-2" *ngFor="let service of servicesAvailable">
             <input
-              #fileInput
-              type="file"
-              accept="image/*"
-              class="hidden"
-              (change)="onFileSelected($event)"
+              type="checkbox"
+              [id]="service.id"
+              class="h-4 w-4"
+              [checked]="service.selected"
+              (change)="toggleService(service.id)"
             />
+            <label [for]="service.id" class="text-sm">{{ service.label }}</label>
           </div>
+        </div>
+      </div>
 
 
-
-
-
-
-
-
-
-
-
-
-        <!-- Servicios disponibles -->
-        <div class="space-y-3">
-          <label>Servicios disponibles</label>
-          <div class="grid gap-2 sm:grid-cols-2">
-            <div class="flex gap-2">
-              <input type="checkbox" id="security" class="h-4 w-4"/>
-              <label for="security" class="text-sm">Seguridad</label>
-            </div>
-            <div class="flex gap-2">
-              <input type="checkbox" id="medical" class="h-4 w-4"/>
-              <label for="medical" class="text-sm">Equipo médico</label>
-            </div>
-            <div class="flex gap-2">
-              <input type="checkbox" id="pool"class="h-4 w-4" />
-              <label for="pool" class="text-sm font-inter">Alberca</label>
-            </div>
-            <div class="flex gap-2">
-              <input type="checkbox" id="alcohol" class="h-4 w-4"/>
-              <label for="alcohol" class="text-sm">Venta de alcohol</label>
-            </div>
-            <div class="flex gap-2">
-              <input type="checkbox" id="vape" class="h-4 w-4" />
-              <label for="vape" class="text-sm">Venta de cigarros electrónicos</label>
-            </div>
-            <div class="flex gap-2">
-              <input type="checkbox" id="food" class="h-4 w-4"/>
-              <label for="food" class="text-sm">Comida</label>
-            </div>
+        <!-- Visibilidad -->
+        <div class="space-y-4">
+          <h2 class="text-lg font-semibold">Visibilidad del Evento</h2>
+          <div class="flex items-center justify-between">
+            <label class="font-medium">Hacer evento público</label>
+            <ion-toggle formControlName="visibility" color="tertiary"></ion-toggle>
           </div>
+          <span class="text-slate-500 text-xs">Un evento privado no aparecerá en la sección de Inicio, solo insertando el código</span>
+        </div>
+
+        <!-- Permitir subir fotos -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <label class="font-medium">Permitir subir fotos</label>
+            <ion-toggle formControlName="allowPhotoUpload" color="tertiary"></ion-toggle>
+          </div>
+          <span class="text-slate-500 text-xs">Los invitados podrán subir fotos durante el evento, pero serán visibles hasta dentro de 24hrs</span>
         </div>
 
         <!-- Información de contacto -->
         <div class="space-y-2">
-          <label for="contact">Información de contacto para boletos</label>
-          <textarea
-            id="contact"
-            placeholder="Información de contacto para la venta de boletos..."
-            class="label"
-          ></textarea>
+          <label for="contactInfo">Información de contacto para boletos</label>
+          <textarea id="contactInfo" formControlName="contactInfo" placeholder="Ej. correo@xoapp.com 4612222222 @luis_chairess:ig" class="label"></textarea>
         </div>
 
         <!-- Botón de enviar -->
-        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded">
-          Crear Evento
-        </button>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded" *ngIf="!loading" id="open-loading">Crear Evento</button>
+        
+        <!-- <div class="flex items-center justify-center" *ngIf="loading">
+
+          <ion-spinner></ion-spinner>
+        </div> -->
       </form>
     </div>
   </div>
-
-
-
+  <ion-loading class="custom-loading" trigger="open-loading" message="Loading..." [duration]="3000"></ion-loading>
 </ion-content>

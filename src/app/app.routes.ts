@@ -30,6 +30,10 @@ export const routes: Routes = [
           {
             path: 'tickets/:event-id',
             loadComponent: () => import('./tickets/tickets.page').then(m => m.TicketsPage)
+          },
+          {
+            path: 'event/:nevent-id',
+            loadComponent: () => import('./event/event.page').then(m => m.EventPage)
           }
           
         ]
@@ -41,13 +45,5 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/app/page/home',
     pathMatch: 'full'
-  },
-  {
-    path: 'tickets',
-    loadComponent: () => import('./tickets/tickets.page').then( m => m.TicketsPage)
-  },
-  {
-    path: 'event',
-    loadComponent: () => import('./event/event.page').then( m => m.EventPage)
   }
 ];

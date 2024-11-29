@@ -9,10 +9,11 @@ import { ImageHeaderComponent } from "../image-header/image-header.component";
   templateUrl: './tickets.page.html',
   styleUrls: ['./tickets.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonContent, CommonModule, FormsModule, ImageHeaderComponent]
+  imports: [IonIcon, IonContent, CommonModule, FormsModule]
 })
 export class TicketsPage implements OnInit {
-  image: string = '../../assets/img/spoti-utopia.jpg';
+
+  show: boolean = false
 
   constructor() { }
 

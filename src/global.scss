@@ -144,3 +144,7 @@
 .text-color-primary{
   color: var(--primary);
 }
+
+.bottom-spacing{
+  @apply min-h-[13%];
+}

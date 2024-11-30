@@ -5,9 +5,10 @@ import { CommonModule } from '@angular/common';
 import { EventService } from '../service/event.service';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { TicketService } from '../service/ticket.service';
 
 @Component({
-  selector: 'app-create-event',
+  selector: 'appcreateevent',
   standalone: true,
   imports: [IonicModule, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './create-event.page.html',
@@ -31,7 +32,8 @@ export class CreateEventPage {
 
   constructor(private fb: FormBuilder,
     private eventService: EventService,
-    private router: Router
+    private router: Router,
+    private ticketService: TicketService
   ) {
     this.createEventForm = this.fb.group({
       name: ['', Validators.required],
@@ -65,7 +67,7 @@ export class CreateEventPage {
   }
 
   // Manejar el envío del formulario
-  onSubmit() {
+  async onSubmit() {
     if (this.createEventForm.valid) {
       this.loading = true
       const formData = {
@@ -81,12 +83,24 @@ export class CreateEventPage {
       formData.visibilityId = formData.visibility ? 1 : 2
 
       try {
-      const response = firstValueFrom(this.eventService.save(formData));
+      const response = await firstValueFrom(this.eventService.save(formData));
 
-      this.goToTickets('benito');
+      try {
+        const ticket = {eventId: response.id};
+        const tickets = await firstValueFrom(this.ticketService.createAll(15, ticket));
+        console.log(tickets);
 
-      this.loading = false
-      console.log(response);
+        
+        this.goToTickets(response.id);
+
+        this.loading = false
+        console.log(response);
+      } catch (error) {
+        
+        this.loading = false
+        console.log(error);
+      }
+
     } catch (error) {
 
       this.loading = false

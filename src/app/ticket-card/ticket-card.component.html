@@ -1,0 +1,18 @@
+<div class="flex flex-row items-center gap-4 px-1">
+
+  <div class="rounded-full overflow-hidden h-11 w-11" *ngIf="image">
+    <img [src]="image" alt="profile-page" class="object-cover h-full w-full">
+  </div>
+
+  <div class="flex flex-col justify-center items-start flex-grow gap-0.5">
+    <p class="font-semibold text-lg leading-none">{{name}}</p>
+    <p class="font-semibold text-gray-300 leading-none text-xs" *ngIf="status">{{status}}</p>
+  </div>
+
+  <div class="rounded-2xl "
+    [ngClass]="name == 'No registrado' ? 'bg-gray-400 w-20 py-0 flex items-center justify-center' : 'bg-red-400 py-1 w-20 flex items-center justify-center'"
+  >
+    {{code}}
+  </div>
+
+</div>

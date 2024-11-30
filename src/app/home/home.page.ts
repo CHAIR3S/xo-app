@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { chevronDown, calendar, search, grid, menu } from 'ionicons/icons';
 import { NavbarComponent } from "../navbar/navbar.component";
-import { EventService } from '../service/event.service';
 import { firstValueFrom } from 'rxjs';
 import { CardPrimaryComponent } from "../card-primary/card-primary.component";
 import { FormatDatePipe } from '../format-date.pipe';
 import {Event} from '../../model/event.model'
 import { DropDownComponent } from '../drop-down/drop-down.component';
+import { EventService } from '../service/event.service';
 
 @Component({
   selector: 'app-home',

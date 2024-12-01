@@ -10,6 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageHeaderComponent  implements OnInit {
   @Input({required: true}) image64: string = '';
+  @Input({required: true}) imageType: string = '';
 
   constructor() { }
 

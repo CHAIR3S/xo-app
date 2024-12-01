@@ -45,7 +45,7 @@
 
   <div class="px-5">
 
-    <app-card-primary [day]="'12'" [month]="'DEC'" />
+    <app-card-primary [day]="'12'" [month]="'DEC'" [id]="'U8CJ3O'" event=""/>
   </div>
 
   <!-- Near You -->
@@ -97,7 +97,10 @@
         [image]="event.cover"
         [name]="event.name"
         [imageFormat]="event.imageFormat"
-        [size]="'sm'"/>
+        [size]="'sm'"
+        [id]="event.id"
+        [event]="event"
+        />
 
       </div>
     </div>

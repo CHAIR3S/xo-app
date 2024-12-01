@@ -9,7 +9,11 @@ style="
   border-bottom-right-radius: 2rem;
   overflow: hidden;
 "
-[style]="'background-image: url(' + image64 + ')'"
+[style]="image64 
+? { 'background-image': 'url(data:image/' + imageType + ';base64,' + image64 + ')' } 
+: { 'background-image': 'url(../../assets/img/coming-soon-xo.jpg)' }"
+
+
 >
 <!-- Gradiente Oscuro -->
 <div

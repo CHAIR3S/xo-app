@@ -21,6 +21,8 @@ import { AuthService } from '../service/auth.service';
 })
 export class EventPage implements OnInit {
 
+  userId: number;
+
   relation: string = '';
 
   event: any;
@@ -30,6 +32,7 @@ export class EventPage implements OnInit {
   ) { 
     this.event = _eventService.event;
 
+    this.userId = _authService.getUser().id;
     
     
     // this.route.paramMap.pipe(
@@ -58,7 +61,7 @@ export class EventPage implements OnInit {
 
   async ngOnInit() {
 
-    this.relation = (await firstValueFrom(this._eventService.getEventRelation(1, this._eventService.event.id))).toString()
+    this.relation = (await firstValueFrom(this._eventService.getEventRelation(this.userId, this._eventService.event.id))).toString()
 
   }
 

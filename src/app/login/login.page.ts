@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
           console.log('OK', response);
 
           // Guardar token y usuario si el login fue exitoso
-          this._authService.setToken(response.token);
+          this._authService.setToken(response.access_token);
           this._authService.setUser(response.user);
 
           // Navegar a la página principal

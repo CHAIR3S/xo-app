@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
+import { Ticket } from 'src/model/ticket.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,15 @@ export class TicketService {  baseUrl = environment.apiUrl + '/ticket';
 
   createAll(amount: number, ticket: any){
     return this.http.post(this.baseUrl + '/event/' + amount, ticket);
+  }
+
+  update(ticket: Ticket){
+    return this.http.patch(this.baseUrl + '/' + ticket.id, ticket);
+  }
+
+
+  updateByCode(ticket: Ticket){
+    return this.http.patch(this.baseUrl + '/code', ticket);
   }
 
 }

@@ -1,8 +1,25 @@
+<form [formGroup]="createEventForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-center w-full gap-5 px-[10%] py-[3vh]">
+  <!-- Input de código con validación -->
+  <input
+    type="text"
+    formControlName="code"
+    class="label min-h-14 text-center"
+    placeholder="Código"
+    style="text-transform: uppercase;"
+    
+  >
+  <!-- Mostrar error si el campo es inválido -->
+  <div *ngIf="createEventForm.get('code')?.invalid && createEventForm.get('code')?.touched" class="text-red-500 text-sm">
+    El código es obligatorio y debe tener al menos 5 caracteres.
+  </div>
 
-<div class="flex flex-col items-center justify-center w-full gap-5 px-[10%] py-[3vh]">
-  <input type="text" class="label min-h-14" placeholder="Código">
-
-  
-  <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded" id="open-loading">Crear Evento</button>
-
-</div>
+  <!-- Botón de enviar -->
+  <button
+    type="submit"
+    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded"
+    id="open-loading"
+    [disabled]="createEventForm.invalid"
+  >
+    Crear Evento
+  </button>
+</form>

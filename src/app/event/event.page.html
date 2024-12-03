@@ -83,7 +83,7 @@
     </div> -->
 
     
-    <app-insert-code class="w-full" *ngIf="relation == 'UNREGISTER'"/>
+    <app-insert-code class="w-full" *ngIf="relation == 'UNREGISTER'" [eventId]="event.id" [userId]="userId"/>
   
     <app-code-qr *ngIf="relation == 'REGISTER'"/>
 

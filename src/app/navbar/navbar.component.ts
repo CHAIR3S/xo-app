@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { calendar, search, grid, menu } from 'ionicons/icons';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,18 +14,19 @@ import { calendar, search, grid, menu } from 'ionicons/icons';
 })
 export class NavbarComponent  implements OnInit {
 
+  username: string;
 
   calendarIcon = calendar;
   searchIcon = search;
   gridIcon = grid;
   menuIcon = menu;
 
-  constructor() { }
+  constructor(
+    private _authService: AuthService
+  ) {
+      this.username = _authService.getUser().username;
+   }
 
   ngOnInit() {}
-
-  link(){
-    console.log('el trapero e traperos');
-  }
 
 }

@@ -1,140 +1,157 @@
 <ion-content class="h-screen relative">
   <!-- Perfil Header -->
+  
+  @if (user) {
+    <app-image-header [image64]="user ? user.profilePicture : null" class="text-white" style="z-index: 100;" [imageType]="user.imageFormat"
 
-  <app-image-header image64="../../assets/img/benito-profile.jpg" class="text-white" style="z-index: 100;" imageType="jpg">
+    >
 
+      @if (metrics) {
+
+        <div
+      class="absolute bottom-16 w-full flex justify-around items-center text-white text-center"
+        >
+          <div>
+            <h2 class="text-lg font-bold">{{metrics.attendees}}</h2>
+            <p class="text-xs text-gray-300">Asistentes</p>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold">{{metrics.events}}</h2>
+            <p class="text-xs text-gray-300">Eventos</p>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold">{{metrics.pictures}}</h2>
+            <p class="text-xs text-gray-300">Fotos</p>
+          </div>
+        </div>
+        
+      }
+
+    </app-image-header>
+
+    <!-- Información del Usuario -->
     <div
-  class="absolute bottom-16 w-full flex justify-around items-center text-white text-center"
+      class="px-4 py-4 flex justify-between items-center"
+      style="
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        margin-top: -3rem;
+        position: relative;
+        z-index: 10;
+        color: var(--font-black);
+      "
+      [ngStyle]="{
+        backgroundColor: 'var(--background)'
+      }"
     >
       <div>
-        <h2 class="text-lg font-bold">34.4k</h2>
-        <p class="text-xs text-gray-300">Asistentes</p>
+        <h1 class="text-lg font-bold">{{user.name}}</h1>
+        <p class="text-xs text-gray-400">{{'@' + user.username}}</p>
+        <!-- <p class="text-xs text-gray-400">Celaya, México</p> -->
       </div>
-      <div>
-        <h2 class="text-lg font-bold">32</h2>
-        <p class="text-xs text-gray-300">Fiestas</p>
-      </div>
-      <div>
-        <h2 class="text-lg font-bold">6.8k</h2>
-        <p class="text-xs text-gray-300">Fotos</p>
+
+      @if (user.role.name === 'CREATOR' ) {  
+        <div
+          class="bg-primary text-white rounded-full p-2 flex items-center justify-center"
+          style="width: 40px; height: 40px;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1b9de2" ><path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z"
+            /></svg>
+        </div>
+      }
+
+    </div>
+
+    <!-- Tabs -->
+    <div 
+    [ngStyle]="{
+      backgroundColor: 'var(--background)'
+    }">
+      <div class="flex">
+        <button
+          class="flex-1 py-2 text-center font-semibold rounded-sm text-white"
+          style="border-color: var(--primary); background-color: var(--primary); border: 1px solid gray; border-left: 0px;"
+        >
+          Próximamente
+        </button>
+        <button class="flex-1 py-2 text-center font-semibold text-gray-400"
+          style="border: 1px solid gray; border-right: 0px;"
+        >
+          Anteriores
+        </button>
       </div>
     </div>
 
-  </app-image-header>
-
-  <!-- Información del Usuario -->
-  <div
-    class="px-4 py-4 flex justify-between items-center"
-    style="
-      border-top-left-radius: 2rem;
-      border-top-right-radius: 2rem;
-      margin-top: -3rem;
-      position: relative;
-      z-index: 10;
-      color: var(--font-black);
-    "
+    <!-- Eventos -->
+    <div class="px-4 mt-4"
     [ngStyle]="{
       backgroundColor: 'var(--background)'
     }"
-  >
-    <div>
-      <h1 class="text-lg font-bold">Bad Bunny</h1>
-      <p class="text-xs text-gray-400">Celaya, México</p>
-    </div>
-    <div
-      class="bg-primary text-white rounded-full p-2 flex items-center justify-center shadow-lg"
-      style="width: 40px; height: 40px;"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1b9de2" ><path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z"
-        /></svg>
-    </div>
-  </div>
-
-  <!-- Tabs -->
-  <div 
-  [ngStyle]="{
-    backgroundColor: 'var(--background)'
-  }">
-    <div class="flex">
-      <button
-        class="flex-1 py-2 text-center font-semibold rounded-sm text-white"
-        style="border-color: var(--primary); background-color: var(--primary); border: 1px solid gray; border-left: 0px;"
-      >
-        Próximamente
-      </button>
-      <button class="flex-1 py-2 text-center font-semibold text-gray-400"
-        style="border: 1px solid gray; border-right: 0px;"
-      >
-        Anteriores
-      </button>
-    </div>
-  </div>
-
-  <!-- Próximos Eventos -->
-  <div class="px-4 mt-4"
-  [ngStyle]="{
-    backgroundColor: 'var(--background)'
-  }"
-  >
-    <h3 class="text-lg font-semibold" style="color: var(--font-black)">Próximamente</h3>
-    <!-- Evento -->
-    <div
-      class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
-      style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
-    >
-      <!-- Gradiente Oscuro -->
+      <h3 class="text-lg font-semibold" style="color: var(--font-black)">Próximamente</h3>
+      <!-- Evento -->
       <div
-        class="absolute bottom-0 left-0 w-full h-1/2"
-        style="
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-        "
-      ></div>
-      <!-- Detalles del Evento -->
-      <div class="relative p-6 z-10 text-white">
-        <p class="text-sm">Celaya, México</p>
-        <h2 class="text-lg font-bold">Neon Party</h2>
-        <p class="text-xs text-gray-300">346 asistentes confirmados</p>
+        class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
+        style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
+      >
+        <!-- Gradiente Oscuro -->
+        <div
+          class="absolute bottom-0 left-0 w-full h-1/2"
+          style="
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          "
+        ></div>
+        <!-- Detalles del Evento -->
+        <div class="relative p-6 z-10 text-white">
+          <p class="text-sm">Celaya, México</p>
+          <h2 class="text-lg font-bold">Neon Party</h2>
+          <p class="text-xs text-gray-300">346 asistentes confirmados</p>
+        </div>
+        <!-- Fecha -->
+        <div
+          class="absolute top-4 right-4 bg-white text-black rounded-lg text-center p-2 shadow"
+        >
+          <h3 class="text-xl font-bold">14</h3>
+          <p class="text-xs">Dic</p>
+        </div>
       </div>
-      <!-- Fecha -->
+
+      <h3 class="text-lg font-semibold mt-8" style="color: var(--font-black)">Asistencia confirmada</h3>
+      <!-- Evento Confirmado -->
       <div
-        class="absolute top-4 right-4 bg-white text-black rounded-lg text-center p-2 shadow"
+        class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
+        style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
       >
-        <h3 class="text-xl font-bold">14</h3>
-        <p class="text-xs">Dic</p>
+        <!-- Gradiente Oscuro -->
+        <div
+          class="absolute bottom-0 left-0 w-full h-1/2"
+          style="
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          "
+        ></div>
+        <!-- Detalles del Evento -->
+        <div class="relative p-6 z-10 text-white">
+          <p class="text-sm">Celaya, México</p>
+          <h2 class="text-lg font-bold">Christmas Party</h2>
+          <p class="text-xs text-gray-300">139 asistentes confirmados</p>
+        </div>
+        <!-- Fecha -->
+        <div
+          class="absolute top-4 right-4 bg-white text-black rounded-lg text-center p-2 shadow"
+        >
+          <h3 class="text-xl font-bold">25</h3>
+          <p class="text-xs">Dic</p>
+        </div>9
       </div>
     </div>
+  }
 
-    <h3 class="text-lg font-semibold mt-8" style="color: var(--font-black)">Asistencia confirmada</h3>
-    <!-- Evento Confirmado -->
-    <div
-      class="relative rounded-3xl overflow-hidden shadow-lg mt-4"
-      style="background-image: url('../../assets/img/party.jpeg'); background-size: cover; background-position: center;"
-    >
-      <!-- Gradiente Oscuro -->
-      <div
-        class="absolute bottom-0 left-0 w-full h-1/2"
-        style="
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-        "
-      ></div>
-      <!-- Detalles del Evento -->
-      <div class="relative p-6 z-10 text-white">
-        <p class="text-sm">Celaya, México</p>
-        <h2 class="text-lg font-bold">Christmas Party</h2>
-        <p class="text-xs text-gray-300">139 asistentes confirmados</p>
-      </div>
-      <!-- Fecha -->
-      <div
-        class="absolute top-4 right-4 bg-white text-black rounded-lg text-center p-2 shadow"
-      >
-        <h3 class="text-xl font-bold">25</h3>
-        <p class="text-xs">Dic</p>
-      </div>9
-    </div>
-  </div>
-
-
+  @if (!user) {
+    <section class="w-screen h-screen flex justify-center items-center">
+      <ion-spinner class="text-color-primary h-[10vw] w-[10vw]"></ion-spinner>
+    </section>
+  }
+  
   <div class="min-h-[13%]"></div>
-
 
 </ion-content>

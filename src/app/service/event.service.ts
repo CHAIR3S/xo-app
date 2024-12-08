@@ -11,12 +11,15 @@ export class EventService {
 
   event: any = new EventClass({});
 
+  events: any = [];
+
   baseUrl = environment.apiUrl + '/event';
 
   constructor(private http: HttpClient) { }
 
   getAll(){
-    return this.http.get(this.baseUrl);
+    this.events =  this.http.get(this.baseUrl);
+    return this.events;
   }
 
   getById(id: string){

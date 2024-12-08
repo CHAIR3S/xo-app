@@ -31,8 +31,26 @@ export class EventService {
   }
 
   getEventRelation(userId: number, eventId: string) {
-    const body = { userId, eventId }; // Cuerpo de la solicitud
+    const body = { userId, eventId }; 
     return this.http.post(this.baseUrl + '/event-user', body, { responseType: 'text' });
   }
 
+
+
+
+  getPastEventsByCreator(creatorId: number) {
+    return this.http.get(`${this.baseUrl}/creator/${creatorId}/past`);
+  }
+
+  getFutureEventsByCreator(creatorId: number){
+    return this.http.get(`${this.baseUrl}/creator/${creatorId}/future`);
+  }
+
+  getPastRegisteredEvents(userId: number){
+    return this.http.get(`${this.baseUrl}/user/${userId}/registered/past`);
+  }
+
+  getFutureRegisteredEvents(userId: number){
+    return this.http.get(`${this.baseUrl}/user/${userId}/registered/future`);
+  }
 }

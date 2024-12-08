@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom, of, switchMap } from 'rxjs';
 import { UserService } from '../service/user.service';
 import { AuthService } from '../service/auth.service';
+import { CardPrimaryComponent } from '../card-primary/card-primary.component';
+import { SoonEventComponent } from '../soon-event/soon-event.component';
 
 
 export interface Metrics  {
@@ -21,15 +23,19 @@ export interface Metrics  {
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ImageHeaderComponent, IonicModule]
+  imports: [CommonModule, FormsModule, ImageHeaderComponent, IonicModule, SoonEventComponent]
 })
 export class ProfilePage implements OnInit {
+
+  @Output() typeEvent = new EventEmitter<string>();
 
   user: any = null;
 
   username: any;
 
   metrics: any = null;
+
+  type: string = 'future';
 
   constructor(
     private route: ActivatedRoute,
@@ -67,7 +73,24 @@ export class ProfilePage implements OnInit {
       },
     });
 
+  }
+  
+
+  future(){
+
+    this.type = 'future';
+
+    this.typeEvent.emit(this.type);
 
   }
+
+  past(){
+    
+    this.type = 'past'
+    this.typeEvent.emit(this.type);
+
+  }
+
+
 
 }

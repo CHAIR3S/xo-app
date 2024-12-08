@@ -1,0 +1,69 @@
+@if (!loading) {
+  <div>
+    @if ((user.role.name == 'CREATOR' || user.role.name == 'ADMIN') && ((type === 'future') ? soon : created).length > 0 ) {
+      <div class="flex flex-col gap-4">
+        <h3 class="text-lg font-semibold" style="color: var(--font-black)">{{(type === 'future') ? 'Próximamente' : 'Creados'}}</h3>
+
+        @for (event of ((type === 'future') ? soon : created).slice(0, soonLimit); track $index) {
+          <app-card-primary
+            [day]="event.date | formatDate: 'day'"
+            [month]="event.date | formatDate: 'month'"
+            [image]="event.cover"
+            [name]="event.name"
+            [imageFormat]="event.imageFormat"
+            [id]="event.id"
+            [event]="event"
+          />
+        }
+
+        @if (soonLimit < ((type === 'future') ? soon : created).length) {
+          <button
+            class="text-center text-gray-400 font-semibold"
+            (click)="showMoreSoon()"
+          >
+            Ver más
+          </button>
+        }
+      </div>
+    }
+
+    @if (((type === 'future') ? assistancy : past).length > 0) {
+      <div class="flex flex-col gap-4">
+  
+        <h3 class="text-lg font-semibold py-3" style="color: var(--font-black)">
+          {{(type === 'future') ? 'Asistencia Confirmada' : 'Eventos Pasados'}}
+        </h3>
+      
+        @for (event of ((type === 'future') ? assistancy : past).slice(0, assistancyLimit); track $index) {
+          <app-card-primary
+            [day]="event.date | formatDate: 'day'"
+            [month]="event.date | formatDate: 'month'"
+            [image]="event.cover"
+            [name]="event.name"
+            [imageFormat]="event.imageFormat"
+            [id]="event.id"
+            [event]="event"
+          />
+        }
+      
+        @if (assistancyLimit < ((type === 'future') ? assistancy : past).length) {
+          <button
+            class="text-center text-gray-400 font-semibold"
+            (click)="showMoreAssistancy()"
+          >
+            Ver más
+          </button>
+        }
+      </div>
+    }
+
+  </div>
+    
+}
+
+
+@if (loading) {
+  <section class="w-full h-full flex justify-center items-center">
+    <ion-spinner class="text-color-primary h-[8vw] w-[8vw]"></ion-spinner>
+  </section>
+}

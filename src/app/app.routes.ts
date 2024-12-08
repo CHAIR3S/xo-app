@@ -17,7 +17,7 @@ export const routes: Routes = [
           },
           {
             path: 'profile/:username',
-            loadComponent: () => import('./profile/profile.page').then(m => m.ProfilePage)
+            loadComponent: () => import('./profile/profile.page').then(m => m.ProfilePage),
           },
           {
             path: 'create-event',
